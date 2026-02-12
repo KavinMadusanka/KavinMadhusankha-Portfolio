@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUserDetails, login, logout, registerUser } from '../controllers/userController.js';
 import upload from '../middlewares/uploadMiddleware.js';
-import { requiredSignIn } from './../middlewares/authMiddleware';
+import { requiredSignIn } from './../middlewares/authMiddleware.js';
 
 const router = express.Router();
 

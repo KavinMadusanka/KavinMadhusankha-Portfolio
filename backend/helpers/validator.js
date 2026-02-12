@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 //email validator
 export const emailValidator = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,4 +30,11 @@ export const contactNumberValidator = (contactNumber) => {
   const contactNumberRegex = /^\+947\d{8}$/;
   return contactNumberRegex.test(contactNumber);
 };
+
+//remove images
+export const removeImage = (imagePath) => {
+    if (imagePath) {
+        fs.unlinkSync(imagePath);
+    }
+}
 

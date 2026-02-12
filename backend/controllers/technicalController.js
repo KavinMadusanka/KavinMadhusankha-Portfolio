@@ -80,7 +80,8 @@ export const getAllTechnical = async (req, res) => {
 //update technical skill
 export const updateTechnical = async (req, res) => {
     try {
-        const {name, skillLevel, type} = req.body;
+        const { name } = req.params;
+        const { skillLevel, type} = req.body;
 
         const textValid = textValidator(skillLevel) && textValidator(type);
         if(!textValid){
@@ -104,6 +105,10 @@ export const updateTechnical = async (req, res) => {
             });
         }
 
+        if(req.file && existingTechnical.icon){
+            removeImage(existingTechnical.icon);
+        }
+
         const updatedTechnical = await technical.findByIdAndUpdate(
             existingTechnical._id,
             {
@@ -124,6 +129,33 @@ export const updateTechnical = async (req, res) => {
         if (req.file) {
             removeImage(req.file.path);
         }
+        res.status(500).json({
+            success: false,
+            message: "Server Side Error.",
+        })
+    }
+}
+
+//delete technical skill
+export const deleteTechnical = async (req, res) => {
+    try {
+        const { name } = req.params;
+        const existingTechnical = await technical.findOne({ name });
+        if (!existingTechnical) {
+            return res.status(404).json({
+                success: false,
+                message: "Technical skill not found.",
+            });
+        }
+        await technical.findByIdAndDelete(existingTechnical._id);
+        if (existingTechnical.icon) {
+            removeImage(existingTechnical.icon);
+        }
+        res.status(200).json({
+            success: true,
+            message: "Technical skill deleted successfully.",
+        });
+    } catch (error) {
         res.status(500).json({
             success: false,
             message: "Server Side Error.",

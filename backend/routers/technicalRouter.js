@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { createTechnical, getAllTechnical } from '../controllers/technicalController.js';
+import { createTechnical, deleteTechnical, getAllTechnical, updateTechnical } from '../controllers/technicalController.js';
 import { requiredSignIn } from '../middlewares/authMiddleware.js';
 import { createDiskUploader } from '../middlewares/uploadMiddleware.js';
 
@@ -12,5 +12,6 @@ const upload = createDiskUploader({
 
 router.post("/create-technical",requiredSignIn, upload.single("icon"), createTechnical);
 router.get("/get-technical", getAllTechnical);
-
+router.put("/update-technical/:name",requiredSignIn, upload.single("icon"), updateTechnical);
+router.delete("/delete-technical/:name",requiredSignIn, deleteTechnical);
 export default router;

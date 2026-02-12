@@ -38,6 +38,12 @@ const userSchema = new mongoose.Schema({
     experience: {
         type: Number,
     },
+    resetOtpHash: {
+        type: String
+    },
+    resetOtpExpires:{
+        type: Date
+    }
 }, { timestamps: true });
 
 export default mongoose.model("User",userSchema);

@@ -184,3 +184,20 @@ export const getUserDetails = async (req, res) => {
         })
     }
 }
+
+//logout function
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie('access_token').status(200).json({
+      success: true,
+      message: "SignOut Successfully."
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Side Error."
+    })
+  }
+}

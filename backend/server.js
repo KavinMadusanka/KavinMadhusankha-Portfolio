@@ -10,6 +10,7 @@ import path from "path";
 //import routes
 import connectDB from "./config/db.js";
 import userRouter from "./routers/userRouter.js";
+import subscriptionRouter from "./routers/subscriptionRouter.js";
 
 //configure environment
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(helmet({crossOriginResourcePolicy: { policy: "cross-origin" }}));
 app.use("/uploads", express.static("uploads"));
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/subscription", subscriptionRouter);
 
 app.get("/", (req, res) => {
     res.send({

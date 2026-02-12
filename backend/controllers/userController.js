@@ -1,7 +1,8 @@
 import user from '../models/userModel.js';
-import { hashPassword, comparePassword } from '../helpers/authMiddleware.js';
+import { hashPassword, comparePassword } from '../helpers/authHelper.js';
 import { contactNumberValidator, emailValidator, passwordValidator, removeImage, textValidator } from '../helpers/validator.js';
 import JWT from "jsonwebtoken";
+import { sendOtpEmail } from '../helpers/mailer.js';
 
 export const registerUser = async (req, res) => {
     try {
@@ -201,3 +202,154 @@ export const logout = async (req, res) => {
     })
   }
 }
+
+//password reset process 1- create random 6 digit number and send it to email
+export const otp = async (req,res) => {
+  try {
+    const {email} = req.body;
+    const User = await user.findOne({email});
+
+    if(!User){
+      return res.status(404).json({
+        success: false,
+        message: "Account not found."
+      })
+    }
+
+    const otp = crypto.randomInt(100000, 1000000).toString(); // "100000" - "999999"
+
+    const otpHash = crypto.createHash("sha256").update(otp).digest("hex");
+    User.resetOtpHash = otpHash;
+    User.resetOtpExpires = new Date(Date.now() + 10 * 60 * 1000); // expire with in 10 minutes
+
+    await User.save();
+    await sendOtpEmail(User.email, User.firstname, otp);
+    return res.status(200).json({
+      success: true,
+      message: "OTP sent to your email.",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Side Error"
+    })
+  }
+}
+
+//OTP verification part
+export const verifyResetOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and OTP are required.",
+      });
+    }
+
+    const User = await user.findOne({ email });
+    if (!User) {
+      return res.status(404).json({ success: false, message: "User not found." });
+    }
+
+    if (!User.resetOtpHash || !User.resetOtpExpires) {
+      return res.status(400).json({
+        success: false,
+        message: "No OTP request found. Please request a new OTP.",
+      });
+    }
+
+    // check OTP is expired or not
+    if (User.resetOtpExpires < new Date()) {
+      return res.status(400).json({
+        success: false,
+        message: "OTP expired. Please request a new OTP.",
+      });
+    }
+
+    const otpHash = crypto.createHash("sha256").update(String(otp)).digest("hex");
+
+    //compare OTP code
+    if (otpHash !== User.resetOtpHash) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid OTP.",
+      });
+    }
+
+    //remove otp code from DB
+    User.resetOtpHash = undefined;
+    await User.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "OTP verification complete.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: "Server Side Error." });
+  }
+};
+
+//rest password
+export const ResetPassword = async(req, res) => {
+  try {
+    const {email, password} = req.body;
+    if(!email || !password){
+      return res.status(404).json({
+        success: false,
+        message: "fill the password field."
+      })
+    }
+    const User = await user.findOne({email});
+    if(!User){
+      return res.status(404).json({
+        success: false,
+        message: "Account not found."
+      })
+    }
+
+    //check password
+    if (!isStrongPassword(password)) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Password must be at least 8 characters and include 1 uppercase, 1 lowercase, 1 number, and 1 special character (@ ! # $ % &).",
+      });
+    }
+    if (User.resetOtpExpires < new Date()) {
+      return res.status(400).json({
+        success: false,
+        message: "Please request a new OTP.",
+      });
+    }
+    if (User.resetOtpHash) {
+      return res.status(400).json({
+        success: false,
+        message: "Please verify it is your account first.",
+      });
+    }
+
+    //hash password
+    const hashedPassword = await hashPassword(password);
+    //set new password
+    User.password = hashedPassword;
+    //remove otp code and otp expire date from DB
+    User.resetOtpExpires = undefined
+    await User.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Password change successfully."
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Side Error."
+    })
+  }
+}
+

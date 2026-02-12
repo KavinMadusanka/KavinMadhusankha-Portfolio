@@ -5,9 +5,11 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 //import routes
 import connectDB from "./config/db.js";
+import userRouter from "./routers/userRouter.js";
 
 //configure environment
 dotenv.config();
@@ -28,6 +30,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(helmet({crossOriginResourcePolicy: { policy: "cross-origin" }}));
+app.use("/uploads", express.static("uploads"));
+
+app.use("/api/v1/user", userRouter);
 
 app.get("/", (req, res) => {
     res.send({

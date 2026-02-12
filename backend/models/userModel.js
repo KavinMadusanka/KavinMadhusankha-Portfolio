@@ -25,7 +25,19 @@ const userSchema = new mongoose.Schema({
     contactNumber: {
         type: Number,
         required: true
-    }
+    },
+    location: {
+        type: String,
+    },
+    aboutMe: {
+        type: String,
+    },
+    JobTitle:{
+        type: String,
+    },
+    experience: {
+        type: Number,
+    },
 }, { timestamps: true });
 
 export default mongoose.model("User",userSchema);

@@ -59,3 +59,20 @@ export const createTechnical = async (req, res) => {
         })
     }
 }
+
+//get all technical skills
+export const getAllTechnical = async (req, res) => {
+    try {
+        const allTechnical = await technical.find({});
+        res.status(200).json({
+            success: true,
+            data: allTechnical,
+        });
+        
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server Side Error.",
+        })
+    }
+}

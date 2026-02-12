@@ -1,9 +1,14 @@
 import express from 'express';
+import path from 'path';
 import { getUserDetails, login, logout, otp, registerUser, ResetPassword, verifyResetOtp } from '../controllers/userController.js';
-import upload from '../middlewares/uploadMiddleware.js';
+import { createDiskUploader } from '../middlewares/uploadMiddleware.js';
 import { requiredSignIn } from './../middlewares/authMiddleware.js';
 
 const router = express.Router();
+
+const upload = createDiskUploader({
+  getDestination: () => path.join(process.cwd(), "user_photos"),
+});
 
 router.post("/register", upload.single("photo"), registerUser);
 router.post("/login", login);

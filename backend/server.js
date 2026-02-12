@@ -11,6 +11,7 @@ import path from "path";
 import connectDB from "./config/db.js";
 import userRouter from "./routers/userRouter.js";
 import subscriptionRouter from "./routers/subscriptionRouter.js";
+import technicalRouter from "./routers/technicalRouter.js";
 
 //configure environment
 dotenv.config();
@@ -35,6 +36,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/subscription", subscriptionRouter);
+app.use("/api/v1/technical", technicalRouter);
 
 app.get("/", (req, res) => {
     res.send({

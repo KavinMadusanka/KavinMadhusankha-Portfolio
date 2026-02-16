@@ -80,8 +80,8 @@ export const getAllTechnical = async (req, res) => {
 //update technical skill
 export const updateTechnical = async (req, res) => {
     try {
-        const { name } = req.params;
-        const { skillLevel, type} = req.body;
+        const { id } = req.params;
+        const { skillLevel, type, name} = req.body;
 
         const textValid = textValidator(skillLevel) && textValidator(type);
         if(!textValid){
@@ -94,7 +94,7 @@ export const updateTechnical = async (req, res) => {
             });
         }
 
-        const existingTechnical = await technical.findOne({ name });
+        const existingTechnical = await technical.findById(id);
         if (!existingTechnical) {
             if (req.file) {
                 removeImage(req.file.path);
@@ -110,7 +110,7 @@ export const updateTechnical = async (req, res) => {
         }
 
         const updatedTechnical = await technical.findByIdAndUpdate(
-            existingTechnical._id,
+            id,
             {
                 name,
                 skillLevel,
@@ -139,15 +139,15 @@ export const updateTechnical = async (req, res) => {
 //delete technical skill
 export const deleteTechnical = async (req, res) => {
     try {
-        const { name } = req.params;
-        const existingTechnical = await technical.findOne({ name });
+        const { id } = req.params;
+        const existingTechnical = await technical.findById(id);
         if (!existingTechnical) {
             return res.status(404).json({
                 success: false,
                 message: "Technical skill not found.",
             });
         }
-        await technical.findByIdAndDelete(existingTechnical._id);
+        await technical.findByIdAndDelete(id);
         if (existingTechnical.icon) {
             removeImage(existingTechnical.icon);
         }

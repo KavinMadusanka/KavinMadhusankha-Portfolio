@@ -1,5 +1,5 @@
-import { textValidator } from "../helpers/validator";
-import education from "../models/education.js";
+import { textValidator } from "../helpers/validator.js";
+import education from "../models/educatoinModel.js";
 
 export const createEducation = async (req, res) => {
     try {
@@ -25,6 +25,34 @@ export const createEducation = async (req, res) => {
             success: true,
             message: "Added new Education successfully.",
         });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server Side Error.",
+        })
+    }
+}
+
+export const deleteEducation = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const Education = await education.findbyId(id);
+        if(!Education) {
+            res.status(404).json({
+                success: false,
+                message: "Item not found."
+            })
+        }
+
+        await education.findByIdAndDelete(id);
+
+        res.status(201).json({
+            success: true,
+            message: "Item removed successfully."
+        })
+
 
     } catch (error) {
         res.status(500).json({

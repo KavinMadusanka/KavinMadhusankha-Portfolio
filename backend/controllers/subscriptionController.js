@@ -5,8 +5,7 @@ export const createSubscription = async (req, res) => {
     try {
         const { email } = req.body;
 
-        const existingSubscription = await subscription.findOne({ email });
-
+        //validate email address
         const emailValid = emailValidator(email);
         if (!emailValid) {
             return res.status(400).json({
@@ -14,19 +13,21 @@ export const createSubscription = async (req, res) => {
                 message: 'Invalid email format.',
             })
         }
+
+        //check if the email already exists in the database
+        const existingSubscription = await subscription.findOne({ email });
+
         
         if (existingSubscription) {
             return res.status(400).json({
                 success: false,
-                message: 'Email already subscribed.',
+                message: 'You already subscribed.',
             });
         }
 
         const newSubscription = new subscription({
             email
-        });
-
-        await newSubscription.save();
+        }).save();
 
         res.status(201).json({
             success: true,

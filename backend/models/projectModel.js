@@ -15,12 +15,8 @@ export const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    startDate: {
-        type: Date,
-        required: true,
-    },
-    endDate: {
-        type: Date,
+    startEndDate: {
+        type: String,
         required: true,
     },
     role: {

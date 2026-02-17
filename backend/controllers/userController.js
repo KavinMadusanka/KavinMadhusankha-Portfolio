@@ -3,6 +3,7 @@ import { hashPassword, comparePassword } from '../helpers/authHelper.js';
 import { contactNumberValidator, emailValidator, passwordValidator, removeImage, textValidator } from '../helpers/validator.js';
 import JWT from "jsonwebtoken";
 import { sendOtpEmail } from '../helpers/mailer.js';
+import crypto from "crypto";
 
 export const registerUser = async (req, res) => {
     try {
@@ -207,6 +208,7 @@ export const logout = async (req, res) => {
 export const otp = async (req,res) => {
   try {
     const {email} = req.body;
+    console.log(email)
     const User = await user.findOne({email});
 
     if(!User){

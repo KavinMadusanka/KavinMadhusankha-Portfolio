@@ -155,3 +155,4 @@ vite.config.ts.timestamp-*
 #ignore photo uploads
 user_photos/
 technical_icons/
+project_uploads/

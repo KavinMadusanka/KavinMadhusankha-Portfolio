@@ -12,6 +12,8 @@ import connectDB from "./config/db.js";
 import userRouter from "./routers/userRouter.js";
 import subscriptionRouter from "./routers/subscriptionRouter.js";
 import technicalRouter from "./routers/technicalRouter.js";
+import educarionRouter from "./routers/educationRouter.js"
+import projectRouter from "./routers/projectRouter.js";
 
 //configure environment
 dotenv.config();
@@ -32,11 +34,15 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(helmet({crossOriginResourcePolicy: { policy: "cross-origin" }}));
-app.use("/uploads", express.static("uploads"));
+app.use("/user_photos", express.static("user_photos"));
+app.use("/project_uploads", express.static("project_uploads"));
+app.use("/technical_icons", express.static("technical_icons"));
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/subscription", subscriptionRouter);
 app.use("/api/v1/technical", technicalRouter);
+app.use("/api/v1/education", educarionRouter);
+app.use("/api/v1/project", projectRouter);
 
 app.get("/", (req, res) => {
     res.send({

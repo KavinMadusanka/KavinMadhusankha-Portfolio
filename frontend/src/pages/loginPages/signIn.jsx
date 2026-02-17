@@ -75,10 +75,10 @@ const SignIn = () => {
         {/* Title */}
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold text-gray-800">
-            Admin Portal
+            Welcome back
           </h2>
           <p className="text-gray-500 text-sm">
-            Welcome back. Please sign in to continue.
+            Please sign in to continue.
           </p>
         </div>
 

@@ -3,7 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, LogIn } from "lucide-react";
+import { User } from "lucide-react";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 const apiVersion = import.meta.env.VITE_API_VERSION;
@@ -37,6 +37,13 @@ const ForgetPassword = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
+
+        {/* Avatar */}
+        <div className="flex justify-center">
+          <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center shadow-md">
+            <User size={36} className="text-blue-600" />
+          </div>
+        </div>
 
         {/* Title */}
         <div className="text-center space-y-2">

@@ -151,3 +151,7 @@ vite.config.ts.timestamp-*
 *.njsproj
 *.sln
 *.sw?
+
+#ignore photo uploads
+user_photos/
+technical_icons/

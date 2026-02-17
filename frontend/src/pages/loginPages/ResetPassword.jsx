@@ -36,10 +36,12 @@ const ResetPassword = () => {
         { email, password: formData.password });
       if(response.status === 200){
         toast.success('Password successfully reset!');
-        navigate('/login', { state: { email } });
+        setIsLoading(false);
+        navigate('/signin', { state: { email } });
       }
     }
     catch(error){
+      setIsLoading(false);
       toast.error(error.response.data.message);
     }
 

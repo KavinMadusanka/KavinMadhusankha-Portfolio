@@ -133,11 +133,13 @@ const SignIn = () => {
           </div>
 
           {/* Button */}
-          <button type="button"
-          className="text-sm font-medium text-[#0A2E5C] hover:text-blue-800"
-          onClick={() => navigate('/forgot-password')}>
-            Forgot password?
-          </button>
+          <div className="text-right">
+            <Link
+              to="/forget-password"
+              className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-[#0d3778] transition-colors">
+              Forgot password?
+            </Link>
+          </div>
           <button
             type="submit"
             disabled={isLoading}

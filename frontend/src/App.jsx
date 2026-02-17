@@ -4,6 +4,7 @@ import {  Routes, Route } from 'react-router-dom';
 
 //import pages
 import SignIn from './pages/loginPages/signIn.jsx';
+import ForgetPassword from './pages/loginPages/ForgetPassword.jsx';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <div>
         <Routes>
           <Route path='/signin' element={<SignIn />} />
+          <Route path='/forget-password' element={<ForgetPassword />} />
+
 
         </Routes>
       </div>

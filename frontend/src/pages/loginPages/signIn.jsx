@@ -52,7 +52,7 @@ const SignIn = () => {
         Cookies.set("access_token", token, { expires: 1 });
         localStorage.setItem("token", token);
 
-        navigate("/");
+        navigate("/home");
       }
     } catch (error) {
       toast.error(error.message || "Server Error");
@@ -62,7 +62,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 space-y-6">
 
         {/* Avatar */}

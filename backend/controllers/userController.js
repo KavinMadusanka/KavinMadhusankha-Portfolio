@@ -299,6 +299,7 @@ export const verifyResetOtp = async (req, res) => {
 export const ResetPassword = async(req, res) => {
   try {
     const {email, password} = req.body;
+    console.log(email, password)
     if(!email || !password){
       return res.status(404).json({
         success: false,
@@ -314,7 +315,7 @@ export const ResetPassword = async(req, res) => {
     }
 
     //check password
-    if (!isStrongPassword(password)) {
+    if (!passwordValidator(password)) {
       return res.status(400).json({
         success: false,
         message:

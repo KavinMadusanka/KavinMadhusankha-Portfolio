@@ -25,7 +25,7 @@ export const createSubscription = async (req, res) => {
             });
         }
 
-        const newSubscription = new subscription({
+        const newSubscription =await new subscription({
             email
         }).save();
 

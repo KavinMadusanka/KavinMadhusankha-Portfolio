@@ -33,7 +33,7 @@ const VerifyCode = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.get(`${baseUrl}${apiVersion}/user/verifyOTP`,
+      const response = await axios.post(`${baseUrl}${apiVersion}/user/verifyOTP`,
          { email, otp: code });
       if(response.status === 200){
         toast.success(response.data.message);

@@ -17,14 +17,14 @@ const ForgetPassword = () => {
         e.preventDefault();
         setIsLoading(true);
     try {
-        await axios.post(`${baseUrl}${apiVersion}/user/passwordRestOTP`, { email });
+        const response = await axios.post(`${baseUrl}${apiVersion}/user/passwordRestOTP`, { email });
         setTimeout(() => {
-        setIsLoading(false);
-        navigate('/verify-code', {
-            state: {email}
+            setIsLoading(false);
+            navigate('/verify-code', {
+                state: {email}
         });
         }, 1000);
-        toast.success("OTP sent successfully");
+        toast.success(response.data.message);
     }
     catch(error){
         setIsLoading(false);

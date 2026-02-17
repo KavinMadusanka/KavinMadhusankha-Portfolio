@@ -5,6 +5,7 @@ import {  Routes, Route } from 'react-router-dom';
 //import pages
 import SignIn from './pages/loginPages/signIn.jsx';
 import ForgetPassword from './pages/loginPages/ForgetPassword.jsx';
+import VerifyCode from './pages/loginPages/VerifyCode.jsx';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/signin' element={<SignIn />} />
           <Route path='/forget-password' element={<ForgetPassword />} />
+          <Route path='/verify-code' element={<VerifyCode />} />
 
 
         </Routes>

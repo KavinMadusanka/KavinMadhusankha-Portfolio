@@ -8,6 +8,7 @@ import ForgetPassword from './pages/loginPages/ForgetPassword.jsx';
 import VerifyCode from './pages/loginPages/VerifyCode.jsx';
 import ResetPassword from './pages/loginPages/ResetPassword.jsx';
 import Header from './layouts/Header.jsx';
+import Footer from './layouts/Footer.jsx';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path='/forget-password' element={<ForgetPassword />} />
           <Route path='/verify-code' element={<VerifyCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
-          <Route path='/home' element={<Header />} />
+          <Route path='/home' element={<Footer />} />
 
 
         </Routes>

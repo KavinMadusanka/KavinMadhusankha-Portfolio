@@ -46,8 +46,8 @@ const Header = () => {
 
     const navLinks = [
         {href : "/home", lable: "Home"},
-        {href : "/skills", lable: "Skills"},
         {href : "/projects", lable: "Projects"},
+        {href : "/skills", lable: "Skills"},
         {href : "/profile", lable: "Profile"}
     ]
 
@@ -57,7 +57,7 @@ const Header = () => {
                 {/*logo*/}
                 <div className='flex items-center gap-1 cursor-pointer '>
                     {/* bg-teal-600 rounded-lg px-6 py-1  */}
-                    <img src='/LogoWorldWiss.png' alt='Logo' className='w-15 h-15'/>
+                    <div className="bg-linear-to-r from-blue-600 to-blue-500 text-white font-bold px-2 py-1 rounded">KM</div>
                     <div className='ml-2 text-sm lg:text-xl font-medium text-slate-900 dark:text-white'>Kavin Mdhusankha</div>
                 </div>
     

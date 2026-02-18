@@ -10,12 +10,12 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-slate-800 dark:text-gray-400 text-slate-900 border-t border-gray-800">
+    <footer className="bg-white dark:bg-slate-800 dark:text-gray-400 text-slate-900 border-t dark:border-gray-800 border-white">
 
-      <div className="max-w-full mx-auto px-10 py-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12">
+      <div className="max-w-full mx-auto px-10 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
 
         {/* Left Section */}
-        <div className="space-y-4">
+        <div className="space-y-4 sm:col-span-2 md:col-span-3 lg:col-span-1">
           <div className="flex items-center gap-5">
             <div className="bg-linear-to-r from-blue-600 to-blue-500 text-white font-bold px-2 py-1 rounded">
               KM
@@ -31,7 +31,8 @@ const Footer = () => {
         </div>
 
         {/* Sitemap */}
-        <div >
+        
+        <div className="sm:col-span-1">
           <h4 className="dark:text-white text-slate-900 font-semibold mb-4 tracking-wide">
             SITEMAP
           </h4>
@@ -44,7 +45,7 @@ const Footer = () => {
         </div>
 
         {/* Social */}
-        <div>
+        <div className="sm:col-span-1">
           <h4 className="dark:text-white text-slate-900 font-semibold mb-4 tracking-wide">
             SOCIAL
           </h4>
@@ -72,7 +73,7 @@ const Footer = () => {
           </ul>
         </div>
         {/* Newsletter Section */}
-      <div className="col-span-1 md:col-span-3 lg:col-span-2">
+      <div className="sm:col-span-2 md:col-span-3 lg:col-span-2">
         <div className="dark:bg-gray-900 bg-gray-100 rounded-2xl p-8 md:p-12 shadow-lg flex flex-col items-center  gap-6">
 
           <div>

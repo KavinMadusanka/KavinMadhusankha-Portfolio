@@ -1,0 +1,34 @@
+import Header from './Header.jsx'
+import Footer from './Footer.jsx';
+import {Helmet} from 'react-helmet';
+import React from 'react'
+
+const Layout = ({ children, title, description, keywords, author }) => {
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+      <Helmet>
+        <meta charSet='utf-8' />
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="author" content={author} />
+        <title>{title}</title>
+      </Helmet>
+
+      <Header />
+      <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8 pt-22 md:pt-22 dark:bg-linear-to-b from-blue-950/90 to-gray-900 bg-gray-100 ">
+        {/* <Toaster /> */}
+        {children}
+      </main>
+      <Footer/>
+    </div>
+  )
+}
+
+Layout.defaultProps = {
+  title: "Kavin Madhusankha",
+  description: "MERN stack project",
+  keywords: "mern, react, node, mongodb",
+  author: "Kavin Mdhusankha"
+}
+
+export default Layout

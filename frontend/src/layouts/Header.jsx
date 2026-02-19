@@ -52,7 +52,7 @@ const Header = () => {
     ]
 
   return (
-    <nav className='fixed top-0 left-0 right-0 bg-white/80 dark:bg-slate-900/90 backdrop-teal-sm backdrop-blur-md z-50 border-b border-gray-50 dark:border-gray-900 shadow-sm'>
+    <nav className='fixed top-0 left-0 right-0 bg-white/80 dark:bg-slate-800/90 backdrop-teal-sm backdrop-blur-md z-50 border-b border-gray-50 dark:border-gray-900 shadow-sm'>
             <div className='w-full container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-2 md:h-20 h-20'>
                 {/*logo*/}
                 <div className='flex items-center gap-1 cursor-pointer '>

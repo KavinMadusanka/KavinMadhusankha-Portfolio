@@ -33,4 +33,4 @@ const HomeFirstView = () => {
   )
 }
 
-export default HomeFirstView
+export default HomeFirstView;

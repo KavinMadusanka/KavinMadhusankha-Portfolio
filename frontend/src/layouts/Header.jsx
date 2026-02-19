@@ -58,7 +58,7 @@ const Header = () => {
                 <div className='flex items-center gap-1 cursor-pointer '>
                     {/* bg-teal-600 rounded-lg px-6 py-1  */}
                     <div className="bg-linear-to-r from-blue-600 to-blue-500 text-white font-bold px-2 py-1 rounded">KM</div>
-                    <div className='ml-2 text-sm lg:text-xl font-medium text-slate-900 dark:text-white'>Kavin Mdhusankha</div>
+                    <div className='ml-2 text-sm lg:text-xl font-medium text-slate-900 dark:text-white tracking-widest'>Kavin Mdhusankha</div>
                 </div>
     
                 {/* Mobile menu button */}

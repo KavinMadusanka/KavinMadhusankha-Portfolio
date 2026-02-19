@@ -21,9 +21,8 @@ const HomeFirstView = () => {
         <div className='pt-8 lg:pt-13 md:pt-10
         text-slate-400 text-sm md:text-xl
         max-w-xs md:max-w-xs lg:max-w-xl'>
-            Software Developer crafting high-performance web
-            application with a focus on user experience and scalable
-            architechture.
+            Software Developer building scalable, high-performance web applications with 
+            a strong focus on user experience, clean architecture, and modern technologies.
         </div>
         <div className='pt-8 lg:pt-13 md:pt-10'>
             <button className='bg-linear-to-r from-blue-600 to-blue-500 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-md flex flex-row text-sm md:text-xl lg:text-1xl tracking-wide'>

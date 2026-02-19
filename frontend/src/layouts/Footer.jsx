@@ -51,7 +51,7 @@ const Footer = () => {
             </span>
           </div>
 
-          <p className="text-sm leading-relaxed text-gray-500 px-3">
+          <p className="text-sm leading-relaxed dark:text-slate-400 text-slate-500 px-3">
             Building modern web experiences with precision and passion.
           </p>
         </div>

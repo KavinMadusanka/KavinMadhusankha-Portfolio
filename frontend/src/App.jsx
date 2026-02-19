@@ -7,6 +7,7 @@ import SignIn from './pages/loginPages/signIn.jsx';
 import ForgetPassword from './pages/loginPages/ForgetPassword.jsx';
 import VerifyCode from './pages/loginPages/VerifyCode.jsx';
 import ResetPassword from './pages/loginPages/ResetPassword.jsx';
+import HomeView from './pages/homePages/HomeView.jsx'
 import Layout from './layouts/Layout.jsx';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
           <Route path='/forget-password' element={<ForgetPassword />} />
           <Route path='/verify-code' element={<VerifyCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
-          <Route path='/home' element={<Layout />} />
+          <Route path='/home' element={<HomeView />} />
 
 
         </Routes>

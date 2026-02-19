@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Github,
   Linkedin,
   Facebook,
-  Instagram
+  Instagram,
+  Mail,
+  MessageCircle
 } from "lucide-react";
+import { PiWhatsappLogoThin } from "react-icons/pi";
+import { createSubscription } from "../service/ApiService";
+import toast from "react-hot-toast";
 
 
 const Footer = () => {
+  const[subEmail, setSubEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const  handleSubmit = async(subEmail) => {
+    try {
+      setLoading(true);
+      const res = await createSubscription(subEmail)
+      console.log(res);
+      toast.success(res.data.message);
+      setSubEmail("");
+      
+    } catch (error) {
+      console.error(error);
+      setSubEmail("");
+      toast.error(error.response?.data?.message);
+
+    } finally {
+      setLoading(false);
+    }
+
+  }
   return (
     <footer className="bg-white dark:bg-slate-800 dark:text-gray-400 text-slate-900 border-t dark:border-gray-800 border-white">
 
@@ -70,6 +96,16 @@ const Footer = () => {
                 Instagram
               </a>
             </li>
+            <li>
+              <a href="https://wa.me/94706846037" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
+                Whatsapp
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
+                Email
+              </a>
+            </li>
           </ul>
         </div>
         {/* Newsletter Section */}
@@ -85,10 +121,20 @@ const Footer = () => {
             </p>
           </div>
 
+          <form 
+          onSubmit={(e) => { 
+            e.preventDefault();
+            handleSubmit(subEmail);}} >
+
+          
           <div className="flex flex-col sm:flex-row w-full gap-3">
             <input
               type="email"
               placeholder="Enter your email"
+              value={subEmail}
+              onChange={(e) =>
+                  setSubEmail(e.target.value)
+                }
               className="bg-white dark:bg-slate-800 
              text-slate-600 dark:text-slate-400 
              px-4 py-3 rounded-lg outline-none 
@@ -96,10 +142,15 @@ const Footer = () => {
              focus:border-slate-500 
              w-full"
             />
-            <button className="bg-linear-to-r from-blue-600 to-blue-500 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-md">
-              Subscribe
+            <button
+            type="submit"
+            // onClick={() => handleSubmit(subEmail)}
+            disabled={loading}
+            className="bg-linear-to-r from-blue-600 to-blue-500 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition shadow-md">
+              {loading ? "Subscribing..." : "Subscribe"}
             </button>
           </div>
+          </form>
         </div>
       </div>
       </div>
@@ -124,6 +175,18 @@ const Footer = () => {
             </a>
             <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
               <Instagram size={18} />
+            </a>
+            {/* WhatsApp */}
+            <a href="https://wa.me/94706846037" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-gray-200 transition">
+              <MessageCircle size={18} />
+            </a>
+            {/* <a href="https://wa.me/94706846037" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
+              <PiWhatsappLogoThin size={22} />
+            </a> */}
+
+            {/* Email */}
+            <a href="mailto:kavinmadusanka20011@email.com" target="_blank" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
+              <Mail size={18} />
             </a>
           </div>
 

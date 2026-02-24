@@ -36,7 +36,7 @@ const Footer = () => {
 
   }
   return (
-    <footer className="bg-white dark:bg-slate-800 dark:text-gray-400 text-slate-900 border-t dark:border-slate-800 border-white">
+    <footer className="bg-white dark:bg-slate-800 dark:text-gray-400 text-slate-900 border-t dark:border-slate-800 border-slate-500">
 
       <div className="max-w-full mx-auto px-10 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12">
 
@@ -82,17 +82,17 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
+              <a href="www.linkedin.com/in/kavinmadhusankha" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
+              <a href="https://www.facebook.com/casey.kavin/" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
                 Facebook
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
+              <a href="https://www.instagram.com/kavin_madusanka" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
                 Instagram
               </a>
             </li>
@@ -102,7 +102,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
+              <a href="mailto:kavinmadusanka20011@gmail.com" target="_blank" rel="noreferrer" className="dark:hover:text-white hover:text-slate-400 transition">
                 Email
               </a>
             </li>
@@ -167,13 +167,13 @@ const Footer = () => {
             <a href="https://github.com/KavinMadusanka" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
               <Github size={18} />
             </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
+            <a href="www.linkedin.com/in/kavinmadhusankha" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
               <Linkedin size={18} />
             </a>
-            <a href="https://facebook.com/" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
+            <a href="https://www.facebook.com/casey.kavin/" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
               <Facebook size={18} />
             </a>
-            <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
+            <a href="https://www.instagram.com/kavin_madusanka" target="_blank" rel="noreferrer" className="p-2 dark:bg-gray-800 bg-white rounded-full dark:hover:bg-gray-700 hover:bg-slate-200 transition">
               <Instagram size={18} />
             </a>
             {/* WhatsApp */}

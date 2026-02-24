@@ -56,7 +56,7 @@ export const createProject = async (req, res) => {
 //get all pin projects
 export const getAllPinProjects = async(req, res) => {
     try {
-        const projects = await project.find({pinPro: yes});
+        const projects = await project.find({pinPro: "yes"});
         if(!projects){
             return res.status(404).json({
                 success: false,
@@ -76,7 +76,30 @@ export const getAllPinProjects = async(req, res) => {
         })
     }
 }
+//get all projects
+export const getAllProjects = async(req, res) => {
+    try {
+        const projects = await project.find({});
+        if(!projects){
+            return res.status(404).json({
+                success: false,
+                message: "No project upload yet."
+            })
+        }
 
+        res.status(200).json({
+            success: true,
+            message: "Project fetch successfully.",
+            projects
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server Side Error.",
+        })
+    }
+}
+//delete project
 export const deleteProject = async(req, res) => {
     try {
         const {id} = req.params;

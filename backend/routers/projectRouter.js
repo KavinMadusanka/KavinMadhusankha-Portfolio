@@ -1,5 +1,5 @@
 import express from 'express';
-import { createProject, deleteProject, getAllPinProjects } from '../controllers/projectController.js';
+import { createProject, deleteProject, getAllPinProjects, getAllProjects } from '../controllers/projectController.js';
 import { requiredSignIn } from '../middlewares/authMiddleware.js';
 import { createDiskUploader } from '../middlewares/uploadMiddleware.js';
 
@@ -18,6 +18,7 @@ router.post("/create-project", requiredSignIn,
     ]),createProject );
 
 router.get("/getAllPinProjects", getAllPinProjects);
+router.get("/getAllProjects", getAllProjects);
 router.delete("/deleteProject", requiredSignIn, deleteProject);
 
 export default router;

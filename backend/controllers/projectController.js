@@ -56,7 +56,7 @@ export const createProject = async (req, res) => {
 //get all pin projects
 export const getAllPinProjects = async(req, res) => {
     try {
-        const projects = await project.find({});
+        const projects = await project.find({pinPro: yes});
         if(!projects){
             return res.status(404).json({
                 success: false,

@@ -1,5 +1,5 @@
 import express from 'express';
-import { createProject } from '../controllers/projectController.js';
+import { createProject, deleteProject, getAllPinProjects, getAllProjects } from '../controllers/projectController.js';
 import { requiredSignIn } from '../middlewares/authMiddleware.js';
 import { createDiskUploader } from '../middlewares/uploadMiddleware.js';
 
@@ -16,5 +16,9 @@ router.post("/create-project", requiredSignIn,
         { name: "images", maxCount: 20 },        // project screenshots
         { name: "featureIcons", maxCount: 20 }   // feature icons
     ]),createProject );
+
+router.get("/getAllPinProjects", getAllPinProjects);
+router.get("/getAllProjects", getAllProjects);
+router.delete("/deleteProject", requiredSignIn, deleteProject);
 
 export default router;

@@ -52,3 +52,55 @@ export const createProject = async (req, res) => {
         })
     }
 }
+
+//get all pin projects
+export const getAllPinProjects = async(req, res) => {
+    try {
+        const projects = await project.find({});
+        if(!projects){
+            return res.status(404).json({
+                success: false,
+                message: "No project upload yet."
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Project fetch successfully.",
+            projects
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server Side Error.",
+        })
+    }
+}
+
+export const deleteProject = async(req, res) => {
+    try {
+        const {id} = req.params;
+        const Project = await project.findById(id)
+
+        if(!Project){
+            return res.status(404).json({
+                success: false,
+                message: "Project can't find."
+            })
+        }
+
+        await project.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success: true,
+            message: "Project removed successfully.",
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Server Side Error.",
+        })
+    }
+}

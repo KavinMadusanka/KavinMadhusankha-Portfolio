@@ -62,6 +62,11 @@ export const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     }],
+    pinPro: {
+        type: String,
+        enum: ["yes", "no"],
+        default: "no",
+    },
     //features of the project (a list of key features or functionalities implemented in the project, along with a brief description and an icon representing each feature)
     features: [{
         featureName: {

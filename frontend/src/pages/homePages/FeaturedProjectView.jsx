@@ -10,7 +10,7 @@ const FeaturedProjectView = () => {
     useEffect(() => {
         const getProjects = async() => {
             try {
-                const res = getAllPinProjects();
+                const res = await getAllPinProjects();
                 setProjects(res.projects)
             } catch (error) {
                 console.log(error);
@@ -105,7 +105,7 @@ const FeaturedProjectView = () => {
                                               
                                               <div className="card-body">
                                                 <p className="card-title">{p.title}</p>
-                                                <p className="card-title">{p.description}</p>
+                                                <p className="card-description">{p.description}</p>
                                               </div>
                                             </div>
                                         </div>

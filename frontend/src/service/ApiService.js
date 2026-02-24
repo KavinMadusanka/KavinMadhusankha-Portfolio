@@ -59,8 +59,20 @@ export const getAllPinProjects = async() => {
     return res;
 }
 
+//get all  project funstion
+export const getAllProjects = async() => {
+    const res = await axios.get(`${url}/project/getAllProjects`)
+    return res;
+}
+
 //delete Project funstion
 export const deleteProject = async() => {
     const res = await axios.delete(`${url}/project/deleteProject`)
+    return res;
+}
+
+//get technicals skills
+export const getTechSkills = async() => {
+    const res = await axios.get(`${url}/technical/get-technical`)
     return res;
 }

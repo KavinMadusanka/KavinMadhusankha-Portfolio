@@ -8,19 +8,20 @@ import ForgetPassword from './pages/loginPages/ForgetPassword.jsx';
 import VerifyCode from './pages/loginPages/VerifyCode.jsx';
 import ResetPassword from './pages/loginPages/ResetPassword.jsx';
 import HomeView from './pages/homePages/HomeView.jsx'
-import Layout from './layouts/Layout.jsx';
+import ProjectListing from './pages/projectListingPages/ProjectListing.jsx';
 
 function App() {
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
-      <div className=''>
+      <div className='min-h-screen'>
         <Routes>
           <Route path='/signin' element={<SignIn />} />
           <Route path='/forget-password' element={<ForgetPassword />} />
           <Route path='/verify-code' element={<VerifyCode />} />
           <Route path='/reset-password' element={<ResetPassword />} />
           <Route path='/home' element={<HomeView />} />
+          <Route path='/projects' element={<ProjectListing />} />
 
 
         </Routes>

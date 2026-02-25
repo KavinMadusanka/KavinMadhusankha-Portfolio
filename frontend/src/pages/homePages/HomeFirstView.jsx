@@ -3,7 +3,7 @@ import {ArrowLeft, ArrowRight, Facebook, Github, Instagram, Linkedin, Mail, Mess
 
 const HomeFirstView = () => {
   return (
-    <div className='relative h-screen w-full md:px-10 px-1
+    <div className='relative min-h-screen h-screen w-full md:px-10 px-1
         dark:bg-gray-800/30 bg-gray-100
         flex flex-col justify-center'>
         <div>
@@ -12,8 +12,8 @@ const HomeFirstView = () => {
                 </p>
         </div>
         <div className='pt-8 lg:pt-13 md:pt-10 
-            lg:text-7xl md:text-6xl text-5xl'>
-            <p className='text-slate-900 dark:text-white font-bold tracking-normal md:tracking-wider'>
+            lg:text-7xl md:text-6xl text-5xl wrap-break-word'>
+            <p className='text-slate-900 dark:text-white font-bold tracking-normal md:tracking-wider '>
                 <b>Kavin Madhusankha</b>
             </p>
             <p className='text-blue-500 font-bold tracking-wider'>

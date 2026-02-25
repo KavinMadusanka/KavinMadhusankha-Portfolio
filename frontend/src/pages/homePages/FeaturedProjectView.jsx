@@ -23,10 +23,8 @@ const FeaturedProjectView = () => {
     }, []);
 
   return (
-    <div className='relative h-screen w-full md:px-10 px-3
-        pt-25 lg:pt-25 md:pt-25
-        '>
-        <section className='w-full flex flex-row md:flex-row'>
+    <div className='relative h-screen w-full md:px-10 px-3 pt-25 '>
+        <section className='w-full flex flex-col md:flex-row'>
 
             {/* Left side view */}
             <div className='md:w-full w-2/3 space-y-8 z-10'>
@@ -47,11 +45,15 @@ const FeaturedProjectView = () => {
 
             {/* Right side view */}
             <div className='md:w-full w-1/3  pl-0 md:pl-12 text-blue-500 pt-1 md:pt-3' >
+                <a href='/projects'>
                 <p className='hidden md:flex flex-row justify-end'>
                     Explore all projects <ArrowRight className="w-6 lg:h-7 md:h-7 h-5 ml-4 mr-2" />
                 </p>
+                </a>
                 <p className='md:hidden flex justify-end'>
+                    <a href='/projects'>
                     See All
+                    </a>
                 </p>
             </div>
         </section>
@@ -65,7 +67,9 @@ const FeaturedProjectView = () => {
         <div>
             {loading? (
                   <div className="pnf">
-                    <h6 className="pnf-heading">Loading Projects...</h6>
+                    <h6 className="pnf-heading dark:text-slate-400 text-slate-500 text-center">
+                        Loading Projects...
+                    </h6>
                   </div>
                 ): (
                     <List 
@@ -91,7 +95,7 @@ const FeaturedProjectView = () => {
                                             <div className='OneItem'>
                                               <div className='Imagebox' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                   <img
-                                                    src={`/api/v1/LostAndFound/getLostItem-photo/${p._id}`}
+                                                    src={`/api/v1/..../-photo/${p._id}`}
                                                     // className="card-img-top"
                                                     alt={p.name}
                                                     style={{

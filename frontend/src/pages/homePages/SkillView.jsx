@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getTechSkills } from './../../service/ApiService';
+import { Code2, Server, Wrench, Monitor } from "lucide-react";
 
 const SkillView = () => {
     const [loading, setLoading] = useState(true);
@@ -42,7 +43,9 @@ const SkillView = () => {
             grid grid-cols-1 md:grid-cols-3
             pt-15 pb-25'>
             <div className='md:w-full w-full space-y-8 z-10 p-6 rounded-2xl shadow-lg bg-white dark:bg-slate-800'>
-                <p className='dark:text-white text-slate-900 text-center'>Frontend</p>
+                <p className='dark:text-white text-slate-900 justify-center flex flex-row gap-2'>
+                    <Monitor className="w-5 h-5 text-blue-500" /> Frontend
+                </p>
                 {loading?  (
                     <div className="pnf">
                     <h6 className="pnf-heading">Loading Skills...</h6>
@@ -61,7 +64,9 @@ const SkillView = () => {
                 )}
             </div>
             <div className='md:w-full w-full space-y-8 z-10 p-6 rounded-2xl shadow-lg bg-white dark:bg-slate-800'>
-                <p className='dark:text-white text-slate-900 text-center'>Backend</p>
+                <p className='dark:text-white text-slate-900 justify-center flex flex-row gap-2'>
+                    <Server className="w-5 h-5 text-blue-500" /> Backend
+                </p>
                 {loading?  (
                     <div className="pnf">
                     <h6 className="pnf-heading">Loading Skills...</h6>
@@ -80,7 +85,9 @@ const SkillView = () => {
                 )}
             </div>
             <div className='md:w-full w-full space-y-8 z-10 p-6 rounded-2xl shadow-lg bg-white dark:bg-slate-800'>
-                <p className='dark:text-white text-slate-900 text-center'>Tools</p>
+                <p className='dark:text-white text-slate-900 justify-center flex flex-row gap-2'>
+                    <Wrench className="w-5 h-5 text-blue-500" /> Tools
+                </p>
                 {loading?  (
                     <div className="pnf">
                     <h6 className="pnf-heading">Loading Skills...</h6>

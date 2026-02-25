@@ -24,7 +24,7 @@ const FeaturedProjectView = () => {
 
   return (
     <div className='relative h-screen w-full md:px-10 px-3 pt-25 '>
-        <section className='w-full flex flex-col md:flex-row'>
+        <section className='w-full flex flex-row'>
 
             {/* Left side view */}
             <div className='md:w-full w-2/3 space-y-8 z-10'>
@@ -50,11 +50,11 @@ const FeaturedProjectView = () => {
                     Explore all projects <ArrowRight className="w-6 lg:h-7 md:h-7 h-5 ml-4 mr-2" />
                 </p>
                 </a>
+                <a href='/projects'>
                 <p className='md:hidden flex justify-end'>
-                    <a href='/projects'>
                     See All
-                    </a>
                 </p>
+                </a>
             </div>
         </section>
         <div>

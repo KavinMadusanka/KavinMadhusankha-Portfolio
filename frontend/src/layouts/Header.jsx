@@ -1,10 +1,12 @@
 // /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HiX, HiMenu } from 'react-icons/hi';
 import { useAuth } from '../context/auth';
 import toast from 'react-hot-toast';
 import Cookies from 'js-cookie';
+import { profilePhoto } from '../service/ApiService';
+import { FileArchive, User } from 'lucide-react';
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 const apiVersion = import.meta.env.VITE_API_VERSION;
@@ -15,6 +17,8 @@ const Header = () => {
     const navigate = useNavigate();
     const activeLink = location.pathname;
     const [auth, setAuth] = useAuth();
+    const [photo, setPhoto] = useState([]);
+    const [imgLoading, setImgLoading] = useState(true);
 
     const handleLogout = async () => {
         try {
@@ -26,8 +30,8 @@ const Header = () => {
                 withCredentials: true,
               });
               const data = await res.json();
-            console.log('herder');
-              console.log(data);
+            // console.log('herder');
+            //   console.log(data);
 
             if (data.success) {
 
@@ -51,14 +55,44 @@ const Header = () => {
         {href : "/profile", lable: "Profile"}
     ]
 
+    useEffect(() => {
+        const fetchProfilePhoto = async() => {
+            try {
+                const res = await profilePhoto();
+                console.log("response",res)
+                setPhoto(res);
+            } catch (error) {
+                console.log(error)
+            } finally{
+                setImgLoading(false);
+            }
+        }
+        fetchProfilePhoto();
+    },[])
+
   return (
     <nav className='fixed top-0 left-0 right-0 bg-white/80 dark:bg-slate-800/90 backdrop-teal-sm backdrop-blur-md z-50 border-b border-gray-50 dark:border-gray-900 shadow-sm'>
             <div className='w-full container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-2 md:h-20 h-20'>
                 {/*logo*/}
                 <div className='flex items-center gap-1 cursor-pointer '>
                     {/* bg-teal-600 rounded-lg px-6 py-1  */}
-                    <div className="bg-linear-to-r from-blue-600 to-blue-500 text-white font-bold px-2 py-1 rounded">KM</div>
-                    <div className='ml-2 text-sm lg:text-xl font-medium text-slate-900 dark:text-white tracking-widest'>Kavin Mdhusankha</div>
+                    <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 dark:bg-slate-700 flex items-center justify-center">
+                    {photo && !imgLoading ? (
+                        <img
+                        src={photo}
+                        alt="Profile"
+                        className="w-full h-full object-cover object-top scale-200"
+                        onError={(e) => {
+                            e.target.style.display = "none";
+                        }}
+                        />
+                    ) : (
+                        <User className="w-5 h-5 text-gray-500 dark:text-gray-300" />
+                    )}
+                    </div>
+                    <div className='ml-2 text-sm lg:text-xl font-medium text-slate-900 dark:text-white tracking-widest'>
+                        Kavin Mdhusankha
+                    </div>
                 </div>
     
                 {/* Mobile menu button */}

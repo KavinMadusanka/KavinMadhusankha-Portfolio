@@ -3,7 +3,7 @@ import {ArrowLeft, ArrowRight, Facebook, Github, Instagram, Linkedin, Mail, Mess
 
 const HomeFirstView = () => {
   return (
-    <div className='relative min-h-screen h-screen w-full md:px-10 px-1
+    <div className='relative min-h-screen h-screen w-full md:px-10 px-1 pt-30 pb-10
         dark:bg-gray-800/30 bg-gray-100
         flex flex-col justify-center'>
         <div>

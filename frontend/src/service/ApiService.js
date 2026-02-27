@@ -3,6 +3,20 @@ import axios from "axios";
 const url = `${import.meta.env.VITE_API_BASE_URL}${import.meta.env.VITE_API_VERSION}`
 // `${url}`
 
+//fetch profile details
+export const getProfileDetails = async() => {
+    const res = await axios.get(`${url}/user/getProfileDetails`)
+    return res;
+}
+
+//get profile pic
+export const profilePhoto = async() => {
+    const res = await axios.get(`${url}/user/profile-photo`,
+        { responseType: "blob" }
+    )
+    return URL.createObjectURL(res.data);;
+}
+
 //create new subscription
 export const createSubscription = async(email) => {
     const res = await axios.post(`${url}/subscription/create-subscription`,

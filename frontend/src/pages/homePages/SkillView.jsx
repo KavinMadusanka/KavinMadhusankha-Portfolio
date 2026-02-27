@@ -12,7 +12,6 @@ const SkillView = () => {
         const getTechs = async() => {
             try {
                 const res = await getTechSkills();
-                console.log(res);
                 setSkills(res.data.data);
             } catch (error) {
                 console.log(error);

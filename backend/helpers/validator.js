@@ -27,7 +27,7 @@ export const descriptionValidator = (description) => {
 
 // Contact number validator for Sri Lanka (+94XXXXXXXXX)
 export const contactNumberValidator = (contactNumber) => {
-  const contactNumberRegex = /^\+947\d{8}$/;
+  const contactNumberRegex = /^\947\d{8}$/;
   return contactNumberRegex.test(contactNumber);
 };
 

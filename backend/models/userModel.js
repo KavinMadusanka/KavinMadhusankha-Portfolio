@@ -19,9 +19,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    // photo: {
+    //     type: String,
+    //     default: null
+    // },
     photo: {
-        type: String,
-        default: null
+        data: Buffer,
+        contentType: String
     },
     contactNumber: {
         type: Number,

@@ -36,9 +36,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(helmet({crossOriginResourcePolicy: { policy: "cross-origin" }}));
-app.use("/user_photos", express.static("user_photos"));
-app.use("/project_uploads", express.static("project_uploads"));
-app.use("/technical_icons", express.static("technical_icons"));
+app.use("/user_photos", express.static("uploads/user_photos"));
+app.use("/project_uploads", express.static("uploads/project_uploads"));
+app.use("/technical_icons", express.static("uploads/technical_icons"));
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/subscription", subscriptionRouter);

@@ -4,11 +4,12 @@ import { contactNumberValidator, emailValidator, passwordValidator, removeImage,
 import JWT from "jsonwebtoken";
 import { sendOtpEmail } from '../helpers/mailer.js';
 import crypto from "crypto";
+import fs from "fs";
 
 export const registerUser = async (req, res) => {
     try {
         const { firstname, lastname, email, password, contactNumber } = req.body;
-        // const {photo} = req.file;
+        const {photo} = req.file;
 
         if (!firstname || !lastname || !email || !password || !contactNumber) {
             if (req.file) {
@@ -59,7 +60,7 @@ export const registerUser = async (req, res) => {
             }
             return res.status(400).json({
                 success: false,
-                message: 'Invalid contact number format. It should be in the format +947XXXXXXXXX.',
+                message: 'Invalid contact number format. It should be in the format 947XXXXXXXXX.',
             });
         }
 
@@ -73,6 +74,7 @@ export const registerUser = async (req, res) => {
                 message: 'Email already exists.',
             })
         }
+
         const hashedPassword = await hashPassword(password);
 
         const newUser = new user({
@@ -81,8 +83,16 @@ export const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             contactNumber,
-            photo: req.file ? req.file.filename : null,
-        }).save();
+            // photo: req.file ? req.file.filename : null,
+        })
+
+        //handle image upload
+        if (photo && photo.data && photo.mimetype) {
+            user.photo.data = photo.data;
+            user.photo.contentType = photo.mimetype;
+        }
+
+        await user.save();
 
         res.status(201).json({
             success: true,
@@ -139,8 +149,7 @@ export const login = async (req, res) => {
 
         const token = JWT.sign(
             {
-                userid: user._id,
-
+                userid: User._id,
             },
             process.env.JWT_SECRET, {expiresIn: "7d"}
         )
@@ -356,3 +365,96 @@ export const ResetPassword = async(req, res) => {
   }
 }
 
+//update profile details
+export const updateProfile = async(req, res) => {
+  try {
+    const id = req.user.userid;
+    const { firstname, lastname, contactNumber } = req.body;
+
+    // Find current user
+    const existingUser = await user.findById(id);
+
+    if (!existingUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found.",
+      });
+    }
+
+    if(firstname && !textValidator(firstname)){
+      const firstnameValid = textValidator(firstname);
+      
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid firstname or lastname format.',
+        })
+    }
+
+    if(lastname && !textValidator(lastname)){
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid firstname or lastname format.',
+        })
+    }
+
+    if(contactNumber && !contactNumberValidator(contactNumber)){
+          return res.status(400).json({
+            success: false,
+            message: 'Invalid contact number format. It should be in the format 947XXXXXXXXX.',
+        });
+    }
+
+    if (firstname) existingUser.firstname = firstname;
+    if (lastname) existingUser.lastname = lastname;
+    if (contactNumber) existingUser.contactNumber = contactNumber;
+
+    if (req.files && req.files.photo) {
+      const photo = req.files.photo;
+
+      // Only allow image types
+      if (!photo.mimetype.startsWith("image/")) {
+        return res.status(400).json({
+          success: false,
+          message: "Only image files are allowed.",
+        });
+      }
+
+      existingUser.photo.data = photo.data;
+      existingUser.photo.contentType = photo.mimetype;
+    }
+
+    await existingUser.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+      user: existingUser,
+    });
+
+
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Server Side Error."
+    })
+  }
+}
+
+export const getProfilePhoto = async (req, res) => {
+  try {
+    const userData = await user.findOne().select("photo");
+    console.log(userData);
+
+    if (!userData || !userData.photo || !userData.photo.data) {
+      return res.status(404).send("No photo found");
+    }
+
+    res.set("Content-Type", userData.photo.contentType);
+    return res.status(200).send(userData.photo.data);
+
+  } catch (error) {
+    res.status(500).send("Error fetching photo");
+  }
+};

@@ -174,7 +174,6 @@ export const login = async (req, res) => {
 //get user details
 export const getUserDetails = async (req, res) => {
     try {
-        console.log("first")
         const User = await user.findOne().select("-password");
         if(!User){
             return res.status(404).json({

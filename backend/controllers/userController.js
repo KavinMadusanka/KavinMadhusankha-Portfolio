@@ -444,7 +444,6 @@ export const updateProfile = async(req, res) => {
 export const getProfilePhoto = async (req, res) => {
   try {
     const userData = await user.findOne().select("photo");
-    console.log(userData);
 
     if (!userData || !userData.photo || !userData.photo.data) {
       return res.status(404).send("No photo found");
